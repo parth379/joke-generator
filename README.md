@@ -20,6 +20,9 @@ They live in `src/components/reactbits/` (TypeScript + Tailwind versions):
 - **SpotlightCard** – card that glows under the cursor
 - **BlurText** – setup and punchline animate in word by word
 - **ClickSpark** – sparks when you click "Naya joke"
+- **RotatingText** – rotating word in the subtitle
+- **StarBorder** – star that runs around the "Naya joke" button
+- **CountUp** – animated "Jokes dekhe" counter
 
 To add more, pick a component on reactbits.dev and run its CLI command, e.g.:
 

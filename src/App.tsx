@@ -2,8 +2,11 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Aurora from './components/reactbits/Aurora'
 import BlurText from './components/reactbits/BlurText'
 import ClickSpark from './components/reactbits/ClickSpark'
+import CountUp from './components/reactbits/CountUp'
+import RotatingText from './components/reactbits/RotatingText'
 import ShinyText from './components/reactbits/ShinyText'
 import SpotlightCard from './components/reactbits/SpotlightCard'
+import StarBorder from './components/reactbits/StarBorder'
 import { fetchJoke, randomFallbackJoke, type Joke } from './jokes'
 
 function App() {
@@ -50,7 +53,17 @@ function App() {
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
             <ShinyText text="Joke Generator" color="#c4b5fd" shineColor="#ffffff" speed={3} />
           </h1>
-          <p className="mt-3 text-sm text-violet-200/70">Ek click, ek joke. 😄</p>
+          <p className="mt-4 flex items-center justify-center gap-2 text-base text-violet-200/80 sm:text-lg">
+            Ek click, ek
+            <RotatingText
+              texts={['joke 😄', 'hasi 😂', 'pun 🤓', 'smile 😁']}
+              rotationInterval={2200}
+              effect="slide"
+              highlight
+              highlightColor="#ec4899"
+              mainClassName="font-semibold"
+            />
+          </p>
         </header>
 
         <SpotlightCard
@@ -97,15 +110,23 @@ function App() {
         </SpotlightCard>
 
         <ClickSpark sparkColor={['#f472b6', '#a78bfa', '#22d3ee']} sparkCount={10} sparkRadius={28} className="!h-auto !w-auto">
-          <button
-            type="button"
+          <StarBorder
             onClick={() => void loadJoke()}
             disabled={loading}
-            className="rounded-full bg-gradient-to-r from-violet-500 to-pink-500 px-8 py-3 text-lg font-semibold text-white shadow-lg shadow-pink-500/30 transition hover:scale-105 active:scale-95 disabled:opacity-60"
+            color="#f472b6"
+            radius={999}
+            backgroundColor="#1e1033"
+            textColor="#ffffff"
+            className="px-8 py-3 text-lg font-semibold transition active:scale-95 disabled:opacity-60"
           >
             {loading ? 'Loading…' : 'Naya joke 🎲'}
-          </button>
+          </StarBorder>
         </ClickSpark>
+
+        <p className="text-sm text-violet-200/70">
+          Jokes dekhe:{' '}
+          <CountUp key={count} from={Math.max(count - 1, 0)} to={count} duration={0.6} trigger="load" className="font-semibold text-white" />
+        </p>
 
         {offline && (
           <p className="text-xs text-violet-200/60">Joke API nahi mili, isliye saved jokes dikha rahe hain.</p>
